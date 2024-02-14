@@ -22,3 +22,13 @@ kubectl get pvc
 kubectl apply -f minio/deployment.yaml
 kubectl get pods
 ```
+
+## Port-Forward to MinIO
+
+```bash
+kubectl port-forward deployment/minio 39687:39687
+```
+
+## Access MinIO Console
+
+Navigate to http://127.0.0.1:39687 after port-forwarding. Log in with username `minioadmin` and password `minioadmin`.
