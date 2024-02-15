@@ -35,3 +35,23 @@ See what's running
 docker build . -t spark-applicationdocke
 docker run spark-application
 ```
+
+## Submitting a Spark Job
+
+Apply it 
+
+```
+kubectl apply -f spark-application/spark-application.yaml 
+```
+
+Describe it
+
+```
+kubectl describe sparkapplication spark-minio-k8s -n spark-operator
+```
+
+Delete it
+
+```
+kubectl delete -f spark-application/spark-application.yaml
+```
