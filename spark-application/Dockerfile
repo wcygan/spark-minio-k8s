@@ -8,5 +8,4 @@ COPY ./src ./src
 RUN ./gradlew jar
 
 FROM bitnami/spark:3.3.4-debian-11-r16
-WORKDIR /app
-COPY --from=builder app/build/*.jar ./spark-application.jar
+COPY --from=builder /app/build/*.jar /opt/bitnami/spark/jars/spark-application.jar

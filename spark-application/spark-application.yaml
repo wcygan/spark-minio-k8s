@@ -8,20 +8,21 @@ spec:
   mode: cluster
   image: "wcygan/spark-minio-k8s-spark-application:latest"
   mainClass: "org.example.App"
-  mainApplicationFile: "local:///app/spark-application.jar"
-  sparkVersion: "3.3.1"
+  mainApplicationFile: "local:///opt/bitnami/spark/jars/spark-application.jar"
+  sparkVersion: "3.3.4"
   restartPolicy:
     type: Never
   driver:
-    cores: 1
-    coreLimit: "1200m"
-    memory: "512m"
+    cores: 2
+    memory: "2048m"
     labels:
-      version: 3.3.1
+      version: 3.3.4
     serviceAccount: spark-operator
   executor:
-    cores: 1
+    cores: 2
     instances: 1
-    memory: "512m"
+    memory: "2048m"
     labels:
-      version: 3.3.1
+      version: 3.3.4
+  sparkConf:
+    "spark.kubernetes.executor.deleteOnTermination": "false"
