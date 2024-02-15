@@ -25,6 +25,9 @@ spec:
               value: "minioadmin"
             - name: MINIO_SECRET_KEY
               value: "minioadmin"
+            # Fix for https://github.com/minio/console/issues/2539
+            - name: MINIO_BROWSER_LOGIN_ANIMATION
+              value: "off"
           ports:
             - containerPort: 9000
           volumeMounts:
