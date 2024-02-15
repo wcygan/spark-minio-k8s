@@ -10,4 +10,3 @@ RUN ./gradlew jar
 FROM eclipse-temurin:11
 WORKDIR /app
 COPY --from=builder app/build/*.jar ./spark-application.jar
-CMD ["java", "-jar", "spark-application.jar"]
