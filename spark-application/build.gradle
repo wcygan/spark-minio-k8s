@@ -41,6 +41,21 @@ java {
     }
 }
 
+jar {
+    archiveBaseName = 'spark-application'
+    destinationDirectory = file('build')
+    manifest {
+        attributes 'Main-Class': 'org.example.App'
+    }
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'org.example.App'

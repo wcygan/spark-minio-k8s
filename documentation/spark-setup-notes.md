@@ -28,3 +28,10 @@ See what's running
 ```
  kubectl get pods -n spark-operator
 ```
+
+## Package and Run the Spark Application with Docker
+
+```
+docker build . -t spark-applicationdocke
+docker run spark-application
+```
