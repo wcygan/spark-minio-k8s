@@ -5,7 +5,7 @@ import org.apache.spark.sql.SparkSession
 object App {
   def main(args: Array[String]): Unit = {
     // Initialize SparkSession
-    val spark = SparkSession.builder
+    val spark = SparkSession.builder()
       .appName("OddNumbersCounter")
       .master("local[*]")
       .getOrCreate()

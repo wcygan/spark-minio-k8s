@@ -7,5 +7,5 @@ RUN ./gradlew dependencies
 COPY ./src ./src
 RUN ./gradlew jar
 
-FROM bitnami/spark:3.3.4-debian-11-r16
-COPY --from=builder /app/build/*.jar /opt/bitnami/spark/jars/spark-application.jar
+FROM spark:3.5.0-scala2.12-java11-ubuntu
+COPY --from=builder /app/build/*.jar /opt/spark/work-dir/spark-application.jar
