@@ -14,14 +14,14 @@ spec:
     type: Never
   driver:
     cores: 2
-    memory: "2048m"
+    memory: "1g"
     labels:
       version: 3.3.4
     serviceAccount: spark-operator
   executor:
     cores: 2
     instances: 1
-    memory: "2048m"
+    memory: "2g"
     labels:
       version: 3.3.4
   sparkConf:
