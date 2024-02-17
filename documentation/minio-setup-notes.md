@@ -21,6 +21,14 @@ kubectl apply -f minio/deployment.yaml
 kubectl get pods
 ```
 
+## Clean Up
+
+```
+kubectl delete -f minio/deployment.yaml
+kubectl delete -f minio/pvc.yaml
+kubectl delete -f minio/pv.yaml
+```
+
 ## Access MinIO Console
 
 ## Port-Forward the MinIO Console
