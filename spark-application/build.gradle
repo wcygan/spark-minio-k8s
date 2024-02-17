@@ -16,9 +16,8 @@ dependencies {
     implementation 'org.apache.spark:spark-core_2.12:3.5.0'
 
     implementation 'org.scala-lang:scala-library:2.12.18'
+    testImplementation 'org.scala-lang:scala-library:2.12.18'
 
-    // This dependency is used by the application.
-    implementation libs.guava
 
     // Use Scalatest for testing our library
     testImplementation libs.junit

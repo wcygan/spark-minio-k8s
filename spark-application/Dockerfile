@@ -3,6 +3,7 @@ WORKDIR /app
 COPY ./gradle ./gradle
 COPY ./gradlew ./gradlew
 COPY ./build.gradle ./build.gradle
+COPY ./gradle.properties ./gradle.properties
 RUN ./gradlew dependencies
 COPY ./src ./src
 RUN ./gradlew jar
