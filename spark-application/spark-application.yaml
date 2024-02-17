@@ -7,8 +7,8 @@ spec:
   type: Scala
   mode: cluster
   image: "wcygan/spark-minio-k8s-spark-application:latest"
+  imagePullPolicy: Always
   mainClass: "org.example.App"
-  # TODO: change this mainApplicationFile
   mainApplicationFile: "local:///opt/spark/work-dir/spark-application.jar"
   sparkVersion: "3.5.0"
   restartPolicy:
