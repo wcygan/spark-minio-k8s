@@ -5,15 +5,15 @@ import org.apache.spark.sql.SparkSession
 object App {
   def main(args: Array[String]): Unit = {
     // Initialize SparkSession
-    val spark = SparkSession.builder()
+    val spark = SparkSession
+      .builder()
       .appName("OddNumbersCounter")
-      .master("local[*]")
-      .getOrCreate()
+      .getOrCreate();
 
     import spark.implicits._
 
     // Create a list of integers
-    val numbers = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    val numbers = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
 
     // Convert the list to a DataFrame
     val df = numbers.toDF()
