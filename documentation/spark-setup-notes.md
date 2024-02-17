@@ -26,7 +26,13 @@ helm delete spark-operator --namespace spark-operator
 See what's running
 
 ```
- kubectl get pods -n spark-operator
+kubectl get pods -n spark-operator
+```
+
+Create a service account to run spark jobs
+
+```
+kubectl apply -f service-account.yaml
 ```
 
 ## Package and Run the Spark Application with Docker
