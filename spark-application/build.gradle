@@ -15,8 +15,7 @@ dependencies {
     implementation 'org.apache.spark:spark-sql_2.12:3.5.0'
     implementation 'org.apache.spark:spark-core_2.12:3.5.0'
 
-    // Use Scala 2.13 in our library project
-    implementation libs.scala.library
+    implementation 'org.scala-lang:scala-library:2.12.18'
 
     // This dependency is used by the application.
     implementation libs.guava
@@ -56,4 +55,8 @@ jar {
 application {
     // Define the main class for the application.
     mainClass = 'org.example.App'
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = ["-target:jvm-1.8"]
 }
