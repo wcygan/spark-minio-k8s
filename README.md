@@ -2,6 +2,20 @@
 
 This project uses Spark and MinIO running on Kubernetes.
 
+## Quickstart
+
+This project uses https://skaffold.dev/ to build and deploy the project.
+
+```
+skaffold run
+```
+
+To delete the deployment, run:
+
+```
+skaffold delete
+```
+
 ## Notes
 
 I'm recording some notes here for future reference.
