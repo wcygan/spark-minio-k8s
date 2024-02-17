@@ -8,4 +8,4 @@ COPY ./src ./src
 RUN ./gradlew jar
 
 FROM spark:3.5.0-scala2.12-java11-ubuntu
-COPY --from=builder /app/build/*.jar /opt/spark/work-dir/spark-application.jar
+COPY --from=builder /app/build/*.jar /opt/spark/examples/jars/spark-application.jar
