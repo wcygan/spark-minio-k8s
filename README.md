@@ -29,6 +29,13 @@ Delete the deployment:
 skaffold delete
 ```
 
+## FAQ
+
+Q: Why didn't my spark application start immediatey?
+
+A: It's using a cron schedule. For example, `schedule: "@every 1m"` means it will start every minute, and it won't start
+immediately.
+
 ## Notes
 
 I'm recording some notes here for future reference.

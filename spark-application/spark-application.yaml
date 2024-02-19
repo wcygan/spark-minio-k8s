@@ -41,4 +41,5 @@ spec:
         - name: "test-volume"
           mountPath: "/tmp"
     sparkConf:
+      # Set this to "false" to retain pods for debugging
       "spark.kubernetes.executor.deleteOnTermination": "false"
