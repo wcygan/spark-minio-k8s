@@ -1,11 +1,11 @@
 package org.example
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.junit.runner.RunWith
-import org.scalatestplus.junit.JUnitRunner
+import org.specs2.mutable.Specification
 
-@RunWith(classOf[JUnitRunner])
-class AppSuite extends AnyFunSuite {
-  test("nothing") {
+class AppSpec extends Specification {
+  "App" should {
+    "assert true" in {
+      true must beTrue
+    }
   }
 }
