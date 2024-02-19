@@ -1,18 +1,18 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: ScheduledSparkApplication
 metadata:
-  name: spark-minio-k8s-example
+  name: spark-minio-k8s-reader
   namespace: spark-operator
 spec:
-  schedule: "@every 1m"
+  schedule: "@every 2m"
   concurrencyPolicy: Forbid
   template:
     type: Scala
     mode: cluster
-    image: "wcygan/spark-minio-k8s-spark-application"
+    image: "wcygan/spark-minio-k8s-reader"
     imagePullPolicy: Always
     mainClass: org.example.App
-    mainApplicationFile: "local:///opt/spark/examples/jars/spark-application.jar"
+    mainApplicationFile: "local:///opt/spark/examples/jars/reader.jar"
     sparkVersion: "3.5.0"
     restartPolicy:
       type: Never
@@ -43,3 +43,11 @@ spec:
     sparkConf:
       # Set this to "false" to retain pods for debugging
       "spark.kubernetes.executor.deleteOnTermination": "false"
+      "spark.hadoop.fs.s3a.endpoint": "minio:9000"
+      "spark.hadoop.fs.s3a.access.key": "minioadmin"
+      "spark.hadoop.fs.s3a.secret.key": "minioadmin"
+      "spark.hadoop.fs.s3a.connection.timeout": "600000"
+      "spark.sql.debug.maxToStringFields": "100"
+      "spark.hadoop.fs.s3a.path.style.access": "true"
+      "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem"
+      "spark.hadoop.fs.s3a.connection.ssl.enabled": "true"
