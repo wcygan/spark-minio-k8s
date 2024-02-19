@@ -5,12 +5,7 @@ To run this example, do the following commands:
 ```
 helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-operator
 
-helm install spark-operator spark-operator/spark-operator \
-    --namespace spark-operator \
-    --set webhook.enable=true \
-    --set image.repository=openlake/spark-operator \
-    --set image.tag=3.3.1 \
-    --create-namespace
+helm install spark-operator spark-operator/spark-operator --namespace spark-operator --create-namespace
     
 kubectl apply -f service-account.yaml
 
@@ -31,12 +26,13 @@ helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-
 Install
 
 ```
-helm install spark-operator spark-operator/spark-operator \
-    --namespace spark-operator \
-    --set webhook.enable=true \
-    --set image.repository=openlake/spark-operator \
-    --set image.tag=3.3.1 \
-    --create-namespace
+helm install spark-operator spark-operator/spark-operator --namespace spark-operator --create-namespace
+```
+
+Uninstall
+
+```
+helm uninstall spark-operator --namespace spark-operator
 ```
 
 Delete

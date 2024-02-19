@@ -1,18 +1,26 @@
-apiVersion: skaffold/v4beta9
+apiVersion: skaffold/v3
 kind: Config
 metadata:
-  name: spark-minio-k-s
+  name: spark-minio-k8s
 build:
   artifacts:
     - image: wcygan/spark-minio-k8s-spark-application
       context: spark-application
       docker:
         dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: spark-operator
+        repo: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
+        remoteChart: spark-operator
+        namespace: spark-operator
+        createNamespace: true
 manifests:
   rawYaml:
     - admin.yaml
     - service-account.yaml
-    - minio/deployment.yaml
     - minio/pv.yaml
     - minio/pvc.yaml
+    - minio/deployment.yaml
     - spark-application/spark-application.yaml
