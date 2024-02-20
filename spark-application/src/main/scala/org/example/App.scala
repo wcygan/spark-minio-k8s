@@ -28,5 +28,7 @@ object App {
 
     // Stop the SparkSession
     spark.stop()
+
+    println("OddNumbersCounter is done!")
   }
 }
