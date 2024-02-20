@@ -10,14 +10,14 @@ build:
       context: spark-application
       docker:
         dockerfile: Dockerfile
-#    - image: wcygan/spark-minio-k8s-writer
-#      context: writer
-#      docker:
-#        dockerfile: Dockerfile
-#    - image: wcygan/spark-minio-k8s-reader
-#      context: reader
-#      docker:
-#        dockerfile: Dockerfile
+    - image: wcygan/spark-minio-k8s-writer
+      context: writer
+      docker:
+        dockerfile: Dockerfile
+    - image: wcygan/spark-minio-k8s-reader
+      context: reader
+      docker:
+        dockerfile: Dockerfile
 deploy:
   helm:
     releases:
@@ -34,5 +34,5 @@ manifests:
     - minio/pvc.yaml
     - minio/deployment.yaml
     - spark-application/spark-application.yaml
-#    - reader/reader.yaml
-#    - writer/writer.yaml
+    - reader/reader.yaml
+    - writer/writer.yaml

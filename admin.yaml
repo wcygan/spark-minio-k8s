@@ -2,6 +2,11 @@
 # Then get a token with this command:
 #      kubectl -n kubernetes-dashboard create token admin-user
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubernetes-dashboard
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-user
