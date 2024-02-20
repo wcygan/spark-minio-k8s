@@ -1,4 +1,4 @@
-apiVersion: skaffold/v3
+apiVersion: skaffold/v4beta5
 kind: Config
 metadata:
   name: spark-minio-k8s
@@ -20,19 +20,52 @@ build:
         dockerfile: Dockerfile
 deploy:
   helm:
-    releases:
-      - name: spark-operator
-        repo: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
-        remoteChart: spark-operator
-        namespace: spark-operator
-        createNamespace: true
-manifests:
-  rawYaml:
-    - admin.yaml
-    - service-account.yaml
-    - minio/pv.yaml
-    - minio/pvc.yaml
-    - minio/deployment.yaml
-    - spark-application/spark-application.yaml
-    - reader/reader.yaml
-    - writer/writer.yaml
+        releases:
+          - name: spark-operator
+            chartPath: "path/to/spark-operator/chart"
+            # Additional Helm configuration
+  kubectl:
+        manifests:
+          - k8s-definitions/*.yaml
+          # Paths to your kubectl manifests
+
+
+#apiVersion: skaffold/v3
+#kind: Config
+#metadata:
+#  name: spark-minio-k8s
+#build:
+#  local:
+#    concurrency: 0
+#  artifacts:
+#    - image: wcygan/spark-minio-k8s-spark-application
+#      context: spark-application
+#      docker:
+#        dockerfile: Dockerfile
+#    - image: wcygan/spark-minio-k8s-writer
+#      context: writer
+#      docker:
+#        dockerfile: Dockerfile
+#    - image: wcygan/spark-minio-k8s-reader
+#      context: reader
+#      docker:
+#        dockerfile: Dockerfile
+#deploy:
+#  helm:
+#    releases:
+#      - name: spark-operator
+#        repo: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
+#        remoteChart: spark-operator
+#        namespace: spark-operator
+#        createNamespace: true
+#
+#manifests:
+#  rawYaml:
+#    - admin.yaml
+#    - service-account.yaml
+#    - minio/pv.yaml
+#    - minio/pvc.yaml
+#    - minio/deployment.yaml
+#    - spark-application/spark-application.yaml
+#    - reader/reader.yaml
+#    - writer/writer.yaml

@@ -10,7 +10,6 @@ spec:
     type: Scala
     mode: cluster
     image: "wcygan/spark-minio-k8s-spark-application"
-    imagePullPolicy: Always
     mainClass: org.example.App
     mainApplicationFile: "local:///opt/spark/examples/jars/spark-application.jar"
     sparkVersion: "3.5.0"

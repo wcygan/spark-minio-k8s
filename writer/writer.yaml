@@ -10,7 +10,6 @@ spec:
     type: Scala
     mode: cluster
     image: "wcygan/spark-minio-k8s-writer"
-    imagePullPolicy: Always
     mainClass: org.example.App
     mainApplicationFile: "local:///opt/spark/examples/jars/writer.jar"
     sparkVersion: "3.5.0"
