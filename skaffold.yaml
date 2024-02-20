@@ -1,7 +1,53 @@
-apiVersion: skaffold/v4beta5
+apiVersion: skaffold/v4beta9
 kind: Config
 metadata:
-  name: spark-minio-k8s
+  name: application-configurations
+manifests:
+  rawYaml:
+    - admin.yaml
+    - service-account.yaml
+deploy:
+  kubectl: {}
+---
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: minio-configurations
+requires:
+  - configs:
+      - application-configurations
+manifests:
+  rawYaml:
+    - minio/pv.yaml
+    - minio/pvc.yaml
+    - minio/deployment.yaml
+deploy:
+  kubectl: {}
+---
+apiVersion: skaffold/v4beta9
+kind: Config
+metadata:
+  name: spark-operator-deployer
+requires:
+  - configs:
+      - minio-configurations
+deploy:
+  helm:
+    releases:
+      - name: spark-operator
+        repo: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
+        remoteChart: spark-operator
+        namespace: spark-operator
+        createNamespace: true
+---
+apiVersion: skaffold/v4beta9
+kind: Config
+requires:
+  - configs:
+      - spark-operator-deployer
+manifests:
+  rawYaml:
+    - spark-application/spark-application.yaml
 build:
   local:
     concurrency: 0
@@ -10,24 +56,46 @@ build:
       context: spark-application
       docker:
         dockerfile: Dockerfile
+deploy:
+  kubectl: {}
+---
+apiVersion: skaffold/v4beta9
+kind: Config
+requires:
+  - configs:
+      - spark-operator-deployer
+manifests:
+  rawYaml:
+    - writer/writer.yaml
+build:
+  local:
+    concurrency: 0
+  artifacts:
     - image: wcygan/spark-minio-k8s-writer
       context: writer
       docker:
         dockerfile: Dockerfile
+deploy:
+  kubectl: {}
+---
+apiVersion: skaffold/v4beta9
+kind: Config
+requires:
+  - configs:
+      - spark-operator-deployer
+manifests:
+  rawYaml:
+    - reader/reader.yaml
+build:
+  local:
+    concurrency: 0
+  artifacts:
     - image: wcygan/spark-minio-k8s-reader
       context: reader
       docker:
         dockerfile: Dockerfile
 deploy:
-  helm:
-        releases:
-          - name: spark-operator
-            chartPath: "path/to/spark-operator/chart"
-            # Additional Helm configuration
-  kubectl:
-        manifests:
-          - k8s-definitions/*.yaml
-          # Paths to your kubectl manifests
+  kubectl: {}
 
 
 #apiVersion: skaffold/v3
