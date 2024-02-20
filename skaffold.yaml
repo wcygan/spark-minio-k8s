@@ -38,7 +38,6 @@ deploy:
         repo: "https://googlecloudplatform.github.io/spark-on-k8s-operator"
         remoteChart: spark-operator
         namespace: spark-operator
-        createNamespace: true
 ---
 apiVersion: skaffold/v4beta9
 kind: Config
